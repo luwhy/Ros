@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.8)
 project(ros2_cpp)
 
-find_package(rclcpp REQUIRED)
+find_package(rclcpp REQUIRED) #直接查找到头文件和库文件
+message(STATUS ${rclcpp_INCLUDE_DIRS}) #头文件以及rclcpp依赖的头文件
+message(STATUS ${rclcpp_LIBRARIES})#库文件
 
 add_executable(ros2_cpp_node ${PROJECT_SOURCE_DIR}/src/ros2_cpp_node.cc)
 
