@@ -10,7 +10,18 @@ find_package(ament_cmake REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+find_package(rclcpp REQUIRED) #直接查找到头文件和库文件
+message(STATUS ${rclcpp_INCLUDE_DIRS}) #头文件以及rclcpp依赖的头文件
+message(STATUS ${rclcpp_LIBRARIES})#库文件
 
+add_executable(cpp_node ${PROJECT_SOURCE_DIR}/src/cpp_node.cpp)
+
+#target_link_libraries(cpp_node ${rclcpp_LIBRARIES})
+#target_include_directories(cpp_node PUBLIC ${rclcpp_INCLUDE_DIRS})
+
+#这里就是导入了rclcpp依赖
+ament_target_dependencies(cpp_node rclcpp)
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
